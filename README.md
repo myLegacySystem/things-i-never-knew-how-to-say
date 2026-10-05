@@ -12,6 +12,7 @@ This README is the playbook for the book. **When a new chapter is added, follow 
 |---|---|
 | `things-i-never-knew-how-to-say_book_ready.docx` | **The finished book.** Generated; never edit it by hand. |
 | `things-i-never-knew-how-to-say_book_ready.pdf` | The same book as a PDF, converted from the DOCX. Generated. |
+| `things-i-never-knew-how-to-say_print_ready.pdf` | **The file to send to a printer.** Front cover, blank inside cover, the whole book, blank inside cover, back cover. Every page is 5.75 × 8.75 in: the 5.5 × 8.5 in trim plus 0.125 in bleed, with the trim size marked in the file. Generated. |
 | `things-i-never-knew-how-to-say_cover.jpg` | Front cover (5.5 × 8.5 in + 0.125 in bleed, 300 DPI). Generated. |
 | `things-i-never-knew-how-to-say_back.jpg` | Back cover. Generated. |
 | `*.docx` (all the other DOCX files in the root) | **The author's original chapters**, exported from Google Docs. Never edit, rename or delete these. |
@@ -120,7 +121,7 @@ Rules for placing a chapter:
 ```bash
 bash _editing/build/build.sh
 ```
-This rebuilds `things-i-never-knew-how-to-say_book_ready.docx` and the matching `.pdf` in the repo root, including the title page, epigraph and contents. It finishes by listing every chapter and the PDF page it starts on.
+This rebuilds `things-i-never-knew-how-to-say_book_ready.docx`, the matching `.pdf`, and `things-i-never-knew-how-to-say_print_ready.pdf` (covers + book) in the repo root, including the title page, epigraph and contents. It finishes by listing every chapter and the PDF page it starts on.
 
 **Covers:** the new chapter normally doesn't change them. If the back-cover description should mention something central to the new chapter, edit the description in `_editing/build/covers.js`. Use only facts and phrases from the manuscript. Then run `bash _editing/build/build.sh --covers`. **Never change the title, the author name, the back-cover quote, the epigraph or the cover design without the author asking.**
 
@@ -140,7 +141,7 @@ This rebuilds `things-i-never-knew-how-to-say_book_ready.docx` and the matching 
 - **This README:** add the chapter to the **Chapter registry** and the arc table in Step 5, and renumber both if chapters moved.
 
 ### Step 11: Commit, push and report
-- Commit everything on the session's working branch: the new chapter file, any `git mv` renames, the rebuilt DOCX and PDF, covers if rebuilt, `EDITORIAL_NOTES.md` and `README.md`. Push. Don't merge into `main` unless the author asks.
+- Commit everything on the session's working branch: the new chapter file, any `git mv` renames, the rebuilt DOCX and both PDFs, covers if rebuilt, `EDITORIAL_NOTES.md` and `README.md`. Push. Don't merge into `main` unless the author asks.
 - Tell the author, briefly:
   - Where the chapter went and why.
   - Every change you made to it.
@@ -219,17 +220,18 @@ Text with *italics* for emphasis or imagined thoughts.
 
 | Script | What it does |
 |---|---|
-| `_editing/build/build.sh` | One command: fonts, then DOCX, then PDF (plus covers with `--covers`). |
+| `_editing/build/build.sh` | One command: fonts, then DOCX, then PDF, then the print-ready PDF (plus covers with `--covers`). |
 | `_editing/build/build_book.js` | Builds the DOCX from the chapter files: title page, epigraph, contents, chapters. |
 | `_editing/build/finish_docx.py` | Embeds the fonts (regular and italic) and turns on mirrored margins. |
 | `_editing/build/covers.js` | Renders the front and back covers with headless Chromium. The back-cover description lives here. |
+| `_editing/build/make_print_pdf.py` | Puts the front cover, the book and the back cover into one print-ready PDF with bleed. |
 | `_editing/build/get_fonts.py` | Downloads the open-licensed fonts (EB Garamond, Cormorant Garamond). |
 | `_editing/build/extract_docx.py` | Reads the text out of an original DOCX. |
 | `_editing/build/diff_chapter.py` | Lists every word changed between an original and its edited chapter. |
 
 **Requirements:**
 - `node`, with the npm packages `docx` and (for covers) `playwright` and Chromium.
-- `python3`.
+- `python3`, with `pypdf` and `img2pdf` (`build.sh` installs them if they're missing).
 - LibreOffice **Writer** (`soffice`).
 - `pdfinfo`, `pdftotext` and `pdftoppm` (poppler-utils).
 - ImageMagick `convert` (for covers).
@@ -250,4 +252,10 @@ Text with *italics* for emphasis or imagined thoughts.
   - Page 5: Chapter One, where page numbering starts at 1.
 - **Chapters:** each chapter starts on a new page with a small "CHAPTER N" label and the title.
 - **Epigraph and back-cover quote** (the author's own words): "Love doesn't happen to beautiful people. / It happens — / and then that person becomes beautiful."
+- **Print-ready PDF:** 104 pages, laid out for double-sided printing:
+  - Page 1: front cover.
+  - Page 2: blank (inside of the front cover).
+  - The book.
+  - A blank inside back cover. An extra blank page is added if the book has an odd number of pages, so the back cover lands on a back.
+  - The last page: back cover.
 - **Covers:** a single white plumeria on a muted after-rain blue-grey with faint rain streaks, the title in Cormorant Garamond, and the author's name at the bottom of the front.

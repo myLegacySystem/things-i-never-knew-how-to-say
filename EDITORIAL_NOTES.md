@@ -8,6 +8,7 @@ These notes explain what was changed in *Things I Never Knew How to Say* by Aadi
 |---|---|
 | `things-i-never-knew-how-to-say_book_ready.docx` | The complete book: title page, epigraph, contents, and 8 chapters in their final order. Trim size 5.5 × 8.5 in, set in EB Garamond with the regular and italic fonts embedded so it prints the same on any computer. |
 | `things-i-never-knew-how-to-say_book_ready.pdf` | A PDF made directly from that DOCX. It has the same pages, the same page numbers and the same fonts, and includes chapter bookmarks. |
+| `things-i-never-knew-how-to-say_print_ready.pdf` | **For the printer:** front cover, blank inside cover, the book, blank inside cover, back cover. 104 pages at 5.75 × 8.75 in, which is the 5.5 × 8.5 in trim plus 0.125 in bleed, with the trim size marked in the file. |
 | `things-i-never-knew-how-to-say_cover.jpg` | Front cover, 1725 × 2625 px at 300 DPI. That is 5.5 × 8.5 in plus a 0.125 in bleed on every side. |
 | `things-i-never-knew-how-to-say_back.jpg` | Back cover, same size and style. |
 | `_editing/chapters/*.md` | The edited text of each chapter, in plain text, so future changes are easy to make. |
