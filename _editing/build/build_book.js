@@ -3,7 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const {
-  Document, Packer, Paragraph, TextRun, AlignmentType, HeadingLevel, PageBreak,
+  Document, Packer, Paragraph, TextRun, AlignmentType, HeadingLevel,
   Footer, PageNumber, SectionType, TabStopType, LineRuleType,
 } = require("docx");
 
@@ -89,7 +89,7 @@ const styles = {
     {
       id: "ChapterLabel", name: "Chapter Label", basedOn: "Normal", next: "Heading1", quickFormat: true,
       run: { font: FONT, size: 17, characterSpacing: 60, color: "595959", allCaps: true },
-      paragraph: { alignment: AlignmentType.CENTER, spacing: { before: in2tw(1.35), after: 160 }, keepNext: true },
+      paragraph: { alignment: AlignmentType.CENTER, spacing: { before: 0, after: 160 }, keepNext: true },
     },
     {
       id: "Heading1", name: "Heading 1", basedOn: "Normal", next: "BookBody", quickFormat: true,
@@ -110,6 +110,11 @@ const styles = {
       paragraph: { alignment: AlignmentType.CENTER, spacing: { before: 0, after: 0 } },
     },
     {
+      id: "Epigraph", name: "Epigraph", basedOn: "Normal", quickFormat: true,
+      run: { font: FONT, size: 25, italics: true, color: "333333" },
+      paragraph: { alignment: AlignmentType.CENTER, spacing: { before: 0, after: 0, line: 360, lineRule: LineRuleType.AUTO } },
+    },
+    {
       id: "ContentsEntry", name: "Contents Entry", basedOn: "Normal", quickFormat: true,
       run: { font: FONT, size: 23 },
       paragraph: {
@@ -120,6 +125,14 @@ const styles = {
   ],
 };
 
+// An empty line of fixed height that pushes a page's content down. Word and LibreOffice both honour
+// this, whereas "space before" at the top of a page is dropped by LibreOffice.
+const sink = (inches, newPage) => new Paragraph({
+  pageBreakBefore: !!newPage, keepNext: true,
+  spacing: { before: 0, after: 0, line: in2tw(inches), lineRule: LineRuleType.EXACT },
+  children: [],
+});
+
 // ---------- front matter ----------
 const titlePage = [
   new Paragraph({ style: "FrontTitle", spacing: { before: in2tw(2.1) }, children: [new TextRun("Things I Never")] }),
@@ -129,8 +142,24 @@ if (AUTHOR) {
   titlePage.push(new Paragraph({ style: "FrontSmall", spacing: { before: in2tw(2.4) }, children: [new TextRun(AUTHOR)] }));
 }
 
+// The author's own line, set as the book's epigraph (one line per entry).
+const EPIGRAPH = [
+  "Love doesn't happen to beautiful people.",
+  "It happens —",
+  "and then that person becomes beautiful.",
+];
+const epigraphPage = [
+  new Paragraph({ pageBreakBefore: true, spacing: { after: 0 }, children: [] }), // page 2: back of the title page, left blank
+  sink(2.3, true),
+  new Paragraph({
+    style: "Epigraph",
+    children: EPIGRAPH.map((line, i) => new TextRun({ text: typographic(line), break: i > 0 ? 1 : 0 })),
+  }),
+];
+
 const contentsPage = [
-  new Paragraph({ style: "ChapterLabel", spacing: { before: in2tw(1.35), after: in2tw(0.5) }, children: [new TextRun("Contents")] }),
+  sink(1.35, true),
+  new Paragraph({ style: "ChapterLabel", spacing: { after: in2tw(0.5) }, children: [new TextRun("Contents")] }),
   ...chapters.map((c, i) =>
     new Paragraph({
       style: "ContentsEntry",
@@ -142,7 +171,7 @@ const contentsPage = [
 // ---------- body ----------
 const body = [];
 chapters.forEach((c, i) => {
-  if (i > 0) body.push(new Paragraph({ children: [new PageBreak()], spacing: { after: 0 } }));
+  body.push(sink(1.35, i > 0));
   body.push(new Paragraph({ style: "ChapterLabel", children: [new TextRun(`Chapter ${NUMBER_WORDS[i]}`)] }));
   body.push(new Paragraph({ heading: HeadingLevel.HEADING_1, children: runsFor(c.title) }));
   for (const p of c.paragraphs) {
@@ -168,10 +197,9 @@ const doc = new Document({
   description: "Print-ready manuscript",
   styles,
   sections: [
-    { properties: { page: PAGE }, footers: { default: emptyFooter }, children: titlePage },
-    { properties: { page: PAGE, type: SectionType.ODD_PAGE }, footers: { default: emptyFooter }, children: contentsPage },
+    { properties: { page: PAGE }, footers: { default: emptyFooter }, children: [...titlePage, ...epigraphPage, ...contentsPage] },
     {
-      properties: { page: { ...PAGE, pageNumbers: { start: 1 } }, type: SectionType.ODD_PAGE },
+      properties: { page: { ...PAGE, pageNumbers: { start: 1 } }, type: SectionType.NEXT_PAGE },
       footers: { default: folio },
       children: body,
     },

@@ -151,13 +151,13 @@ function back() {
   const p = (t, extra = "") => `<p style="margin:0 0 34px 0;${extra}">${t}</p>`;
   const overlay = `
     <div style="position:absolute;left:${BLEED + 225}px;right:${BLEED + 225}px;top:${BLEED + 300}px;text-align:center;font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-size:66px;line-height:1.32;color:${C.ink};">
-      And if that day never comes…<br>I hope the flower still blooms.<br>Even if it isn’t in my garden.
+      Love doesn’t happen to beautiful people.<br>It happens —<br>and then that person becomes beautiful.
     </div>
     <div style="position:absolute;left:50%;top:${BLEED + 700}px;width:120px;margin-left:-60px;border-top:2px solid ${C.inkFaint};"></div>
     <div style="position:absolute;left:${BLEED + 250}px;right:${BLEED + 250}px;top:${BLEED + 830}px;font-family:'EB Garamond';font-size:45px;line-height:1.55;color:${C.inkSoft};text-align:left;">
       ${p("Most of this was written at a desk by a window, in the middle of an ordinary working day.")}
       ${p("By someone who replies within milliseconds and then waits. Who checks the phone each morning before even putting on glasses. Who reached the station fifteen minutes early. Who still has one picture from a trip saved in a Drive folder.")}
-      ${p("It is about a girl, and a plumeria, and the rain. About overthinking every message. About family, responsibility, and wanting to be good to the people closest to you. About loving someone enough to let them bloom.")}
+      ${p("It is about a girl, and a plumeria, and the rain. About overthinking every message. About family and responsibility. About wanting to be loved, and choosing to stay kind anyway. About loving someone enough to let them bloom, even if it isn’t in your garden.")}
       ${p("It is not a story with an ending.", "margin-bottom:0;")}
       ${p("It is the things he never knew how to say.", `color:${C.ink};`)}
     </div>`;
