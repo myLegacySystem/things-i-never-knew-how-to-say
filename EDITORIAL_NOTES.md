@@ -212,13 +212,9 @@ It is the only bright thing on the cover. The title and **AADITYA DIKE** are set
 
 ## 9. Rebuilding after changes
 
-Edit the chapter files in `_editing/chapters/`. A blank line starts a new paragraph, `*text*` makes italics, and a line starting with `> ` is an indented quote. Files are ordered by their number prefix. Then run:
+See **README.md**. It has the full step-by-step process for adding a new chapter. The short version: edit or add files in `_editing/chapters/`, then run:
 
 ```bash
-python3 _editing/build/get_fonts.py fonts          # once: downloads the open-licensed fonts
-node _editing/build/build_book.js _editing/chapters raw.docx "Aaditya Dike"
-python3 _editing/build/finish_docx.py raw.docx things-i-never-knew-how-to-say_book_ready.docx fonts/EBGaramond-400.ttf fonts/EBGaramond-400i.ttf
-soffice --headless --convert-to pdf things-i-never-knew-how-to-say_book_ready.docx   # the PDF
-node _editing/build/covers.js fonts covers-out "Aaditya Dike"
-# then convert covers-out/front.png and back.png to the two JPGs
+bash _editing/build/build.sh            # rebuilds the DOCX and the PDF (contents page included)
+bash _editing/build/build.sh --covers   # also re-renders the covers
 ```

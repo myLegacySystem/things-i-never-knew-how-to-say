@@ -12,7 +12,10 @@ const AUTHOR = (authorArg || "").trim();
 const BOOK_TITLE = "Things I Never Knew How to Say";
 const FONT = "EB Garamond";
 const NUMBER_WORDS = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
-  "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty"];
+  "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty",
+  "Twenty-One", "Twenty-Two", "Twenty-Three", "Twenty-Four", "Twenty-Five", "Twenty-Six", "Twenty-Seven",
+  "Twenty-Eight", "Twenty-Nine", "Thirty"];
+const chapterWord = (i) => NUMBER_WORDS[i] || String(i + 1);
 
 // Inches -> twips
 const in2tw = (i) => Math.round(i * 1440);
@@ -172,7 +175,7 @@ const contentsPage = [
 const body = [];
 chapters.forEach((c, i) => {
   body.push(sink(1.35, i > 0));
-  body.push(new Paragraph({ style: "ChapterLabel", children: [new TextRun(`Chapter ${NUMBER_WORDS[i]}`)] }));
+  body.push(new Paragraph({ style: "ChapterLabel", children: [new TextRun(`Chapter ${chapterWord(i)}`)] }));
   body.push(new Paragraph({ heading: HeadingLevel.HEADING_1, children: runsFor(c.title) }));
   for (const p of c.paragraphs) {
     if (p.kind === "quote") {
