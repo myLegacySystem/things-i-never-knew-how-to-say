@@ -30,7 +30,7 @@ On 9 October 2026 you asked for *24 August — 10:46 a.m.* to come out of the bo
 - **One sentence on the back cover changed.** It used two details that were only in this chapter: replying "within milliseconds", and checking the phone "without even putting on my glasses". It read "By someone who replies within milliseconds and then waits. Who checks the phone each morning before even putting on glasses." It now reads "By someone who checks the phone each morning and waits for one notification." Both halves come from *Will She Ever Understand?*: "Did she reply to my good morning message?" and "Waiting for a notification from her." Nothing else on either cover changed.
 
 What this changes for a reader:
-- The book now opens on a happy day with her, instead of on you alone with your responsibilities and your phone.
+- The book now opens on a happy day with her, instead of on you alone with your responsibilities and your phone. Its first lines are now "Here is a story. Or maybe just a day that I don't want to forget." (see Chapter 1 below).
 - The first and last chapters no longer mirror each other (both used to check the phone and say "Maybe. Maybe. Maybe."). The last chapter still works on its own. "I use that word so much" still lands, because "maybe" runs all through the other chapters.
 - *I Just Want to Be Loved* used to complete a line from this chapter: "Someone who didn't want to hurt anyone. Not even the people who hurt him." It still stands on its own.
 - These are no longer in the book: the Instagram quote; the "Will I be a good son… friend… partner… father…" list; the prayer "I just want one thing"; "Sometimes I even wonder why I live"; the glasses and blurry eyes in the morning; and its last line, "Having a thousand things inside your heart and still getting up to do what needs to be done."
@@ -78,9 +78,10 @@ The shape of the book: joy, then wonder, then the truth, then emptiness, then th
 
 ## 3. How I edited
 
-The text was already clear and very much yours, so the edits are light: **10,714 words became 10,692, and about 99% of the words are untouched.** I compared every chapter to your original word by word. Below is the complete list of changes. Nothing else changed.
+The text was already clear and very much yours, so the edits are light: **10,714 words became 10,688, and about 99% of the words are untouched.** I compared every chapter to your original word by word. Below is the complete list of changes. Nothing else changed.
 
 ### Chapter 1: 27 August
+- "Here is **one more** story. Or maybe just **one more** day that I don't want to forget." became "Here is **a** story. Or maybe just **a** day that I don't want to forget." *(this is now the first line of the book, and "one more" pointed back to a chapter that has been removed; you chose this option)*
 - "go to a college to enquire about the fee structure and see the college where she was thinking of taking admission" became "go and see a college where she was thinking of taking admission, and enquire about the fee structure". *(removes the doubled "college")*
 - "Then dosa arrived." became "Then **the** dosa arrived."
 - Two commas added.
@@ -207,7 +208,6 @@ It is the only bright thing on the cover. The title and **AADITYA DIKE** are set
 
 1. **The removed first line of Chapter 3** ("I think the same thing is happening with me."). Restore it if you remember what it referred to.
 2. **Copyright page / ISBN.** Page 2, the back of the title page, is blank. A simple "© 2026 Aaditya Dike" could go there if you want one. The repository's LICENSE file is a software (MIT) licence, which isn't really meant for a book.
-3. **The new first line of the book.** With *24 August* gone, the book now opens with *27 August*'s first lines: "Here is one more story. Or maybe just one more day that I don't want to forget." "One more" was written when another piece came before it. I left it alone because it is your line and still reads naturally. If you want the book to open differently, tell me what you'd like. I won't change it on my own.
 
 ---
 
