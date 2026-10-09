@@ -1,8 +1,8 @@
 # 27 August
 
-Here is one more story.
+Here is a story.
 
-Or maybe just one more day that I don't want to forget.
+Or maybe just a day that I don't want to forget.
 
 It started on 26 August. She messaged me asking if I was free tomorrow.
 

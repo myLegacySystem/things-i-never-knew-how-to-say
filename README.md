@@ -18,24 +18,34 @@ This README is the playbook for the book. **When a new chapter is added, follow 
 | `*.docx` (all the other DOCX files in the root) | **The author's original chapters**, exported from Google Docs. Never edit, rename or delete these. |
 | `_editing/chapters/NN-title.md` | **The edited text of every chapter.** The book is built from these. The `NN` number sets the chapter order. |
 | `_editing/originals/` | Originals that didn't arrive as DOCX (for example, text pasted in a chat), saved word for word. |
+| `_editing/removed/` | The edited text of chapters the author took out of the book, kept so they can be put back. Not built into the book. |
 | `_editing/build/` | The scripts that build the book, PDF and covers. |
 | `EDITORIAL_NOTES.md` | Why the chapters are in this order, every edit ever made, and what was deliberately left alone. |
 | `CLAUDE.md` | Points Claude to this README. |
 
 ## Chapter registry
 
-This is the current order. Any original that isn't listed here is a **new chapter**.
+This is the current order. Any original that isn't listed here, or under **Removed chapters** below, is a **new chapter**.
 
 | # | Title | Edited file | Original |
 |---|---|---|---|
-| 1 | 24 August — 10:46 a.m. | `_editing/chapters/01-24-august.md` | `24 August — 10_46 a.m_.docx` |
-| 2 | 27 August | `_editing/chapters/02-27-august.md` | `27 August.docx` |
-| 3 | The Flower I Keep Seeing | `_editing/chapters/03-the-flower-i-keep-seeing.md` | `THE FLOWER I KEEP SEEING.docx` |
-| 4 | The Flower I Chose Not to Pick | `_editing/chapters/04-the-flower-i-chose-not-to-pick.md` | `The Flower I Chose Not to Pick.docx` |
-| 5 | The Weight of Thinking About You | `_editing/chapters/05-the-weight-of-thinking-about-you.md` | `The Weight of Thinking About You.docx` |
-| 6 | I Just Want to Be Loved | `_editing/chapters/06-i-just-want-to-be-loved.md` | `_editing/originals/i-just-want-to-be-loved.original.txt` (sent as text) |
-| 7 | The Love I Could Never Explain | `_editing/chapters/07-the-love-i-could-never-explain.md` | `The Love I Could Never Explain.docx` |
-| 8 | Will She Ever Understand? | `_editing/chapters/08-will-she-ever-understand.md` | `Will She Ever Understand_.docx` |
+| 1 | 27 August | `_editing/chapters/01-27-august.md` | `27 August.docx` |
+| 2 | The Flower I Keep Seeing | `_editing/chapters/02-the-flower-i-keep-seeing.md` | `THE FLOWER I KEEP SEEING.docx` |
+| 3 | The Flower I Chose Not to Pick | `_editing/chapters/03-the-flower-i-chose-not-to-pick.md` | `The Flower I Chose Not to Pick.docx` |
+| 4 | The Weight of Thinking About You | `_editing/chapters/04-the-weight-of-thinking-about-you.md` | `The Weight of Thinking About You.docx` |
+| 5 | I Just Want to Be Loved | `_editing/chapters/05-i-just-want-to-be-loved.md` | `_editing/originals/i-just-want-to-be-loved.original.txt` (sent as text) |
+| 6 | The Love I Could Never Explain | `_editing/chapters/06-the-love-i-could-never-explain.md` | `The Love I Could Never Explain.docx` |
+| 7 | Will She Ever Understand? | `_editing/chapters/07-will-she-ever-understand.md` | `Will She Ever Understand_.docx` |
+
+### Removed chapters
+
+The author took these out of the book. Their originals stay in the repository untouched, and they are **not** new chapters. Don't add them back unless the author asks.
+
+| Title | Edited file (kept, not built) | Original | Removed |
+|---|---|---|---|
+| 24 August — 10:46 a.m. | `_editing/removed/24-august.md` | `24 August — 10_46 a.m_.docx` | 9 October 2026, at the author's request. It was Chapter 1. |
+
+To put a removed chapter back, `git mv` its edited file into `_editing/chapters/` with the right `NN-` number (renumbering the others as in Step 6), move its row back into the registry, and rebuild. Its edits are listed under "Removed chapter" in `EDITORIAL_NOTES.md`.
 
 **For the author:** to add a chapter, export it from Google Docs as a `.docx`, put it in the root of this repository next to the others, and say "I added a new chapter". Pasting the text into the chat works too.
 
@@ -46,7 +56,7 @@ This is the current order. Any original that isn't listed here is a **new chapte
 Do every step, in order. Don't skip the reading.
 
 ### Step 1: Find the new chapter
-- List the `.docx` files in the root, leaving out `things-i-never-knew-how-to-say_book_ready.docx`. Compare them with the **Chapter registry** above. Any file not in the registry is new. There may be more than one.
+- List the `.docx` files in the root, leaving out `things-i-never-knew-how-to-say_book_ready.docx`. Compare them with the **Chapter registry** above. Any file not in the registry, and not under **Removed chapters**, is new. There may be more than one.
 - If the author pasted the text instead, that is the new chapter.
 - Read the text out of a DOCX like this (no pandoc needed):
   ```bash
@@ -88,14 +98,13 @@ The order is an emotional journey, not just a timeline. The current arc is:
 
 | # | Chapter | Its job in the book |
 |---|---|---|
-| 1 | 24 August — 10:46 a.m. | Who the narrator is: responsibilities, mom, overthinking, waiting for her messages. |
-| 2 | 27 August | The same week. The reader meets her in a real scene and starts to care (the happy day). |
-| 3 | The Flower I Keep Seeing | Who she is to him. Introduces the plumeria, the tree, the rain. |
-| 4 | The Flower I Chose Not to Pick | The middle: the truth (caste, her brother, her family), how it began (the trip), letting her bloom. |
-| 5 | The Weight of Thinking About You | Emptiness after letting go. Overthinking, mom, wishing for "true love". |
-| 6 | I Just Want to Be Loved | The breaking point: anger at fake people, tears, then "I'll stay kind." |
-| 7 | The Love I Could Never Explain | Tender grief and gratitude. A "false ending". |
-| 8 | Will She Ever Understand? | The ending. After everything, still waiting for one notification. Unresolved. |
+| 1 | 27 August | The opening. The reader meets her straight away in a real scene and starts to care (the happy day). |
+| 2 | The Flower I Keep Seeing | Who she is to him. Introduces the plumeria, the tree, the rain. |
+| 3 | The Flower I Chose Not to Pick | The middle: the truth (caste, her brother, her family), how it began (the trip), letting her bloom. |
+| 4 | The Weight of Thinking About You | Emptiness after letting go. Overthinking, mom, wishing for "true love". |
+| 5 | I Just Want to Be Loved | The breaking point: anger at fake people, tears, then "I'll stay kind." |
+| 6 | The Love I Could Never Explain | Tender grief and gratitude. A "false ending". |
+| 7 | Will She Ever Understand? | The ending. After everything, still waiting for one notification. Unresolved. |
 
 Rules for placing a chapter:
 - **Place it where it makes neighbouring chapters more meaningful.** Ask:
@@ -103,7 +112,7 @@ Rules for placing a chapter:
   - Does it answer a question an earlier chapter raises?
   - Does it repeat something the chapter next to it says?
 - **Keep the emotional rhythm varied.** Avoid stacking chapters that feel the same.
-- **Don't let placement imply something the author never wrote.** For example, chapter 6 sits *before* chapter 7 so that its anger about "people breaking trust" isn't read as being about her.
+- **Don't let placement imply something the author never wrote.** For example, chapter 5 sits *before* chapter 6 so that its anger about "people breaking trust" isn't read as being about her.
 - **Dated chapters stay in date order.**
 - **Chapter 1 and the last chapter are the book's frame.** A new chapter that is clearly *later in the story* (something new happened) may belong at or near the end. Changing the first or last chapter is a big decision: only do it if it is clearly better, and say so prominently when you report back.
 - If two places both work, choose the one that gives a first-time reader the stronger experience.
@@ -252,7 +261,7 @@ Text with *italics* for emphasis or imagined thoughts.
   - Page 5: Chapter One, where page numbering starts at 1.
 - **Chapters:** each chapter starts on a new page with a small "CHAPTER N" label and the title.
 - **Epigraph and back-cover quote** (the author's own words): "Love doesn't happen to beautiful people. / It happens — / and then that person becomes beautiful."
-- **Print-ready PDF:** 104 pages, laid out for double-sided printing:
+- **Print-ready PDF:** 88 pages, laid out for double-sided printing:
   - Page 1: front cover.
   - Page 2: blank (inside of the front cover).
   - The book.
